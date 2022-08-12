@@ -1,11 +1,9 @@
-import logo from './logo.svg';
-import './App.css';
-import SinglePage from './components/pdf-pages/single-page.js'; //check navigation path structure. for manual entry.
+import React from 'react';
 
 function App() {
   return (
     <div className="App">
-    <SinglePage />
+    <p>test</p>
     </div>
   );
 }

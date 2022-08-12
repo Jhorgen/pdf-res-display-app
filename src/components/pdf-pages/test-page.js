@@ -7,6 +7,7 @@ export default function SinglePage() {
   return (
     <Document file={samplePDF}>
       <Page pageNumber={1} />
+      <p>test</p>
     </Document>
   );
 }

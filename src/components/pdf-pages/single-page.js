@@ -2,28 +2,47 @@ import React, { useState } from 'react';
 import {Document, Page } from 'react-pdf';
 
 export default function SinglePage() {
-  const []
-  const []
+  const [numPages, setNumPages] = useState(null);
+  const [pageNumber, setPageNumber] = useState(1);
 
-  function x () {
-
+  function onDocumentLoadSuccess({ numPages }) {
+    setNumPages(numPages);
+    setPageNumber(1);
   }
 
-  function x () {
-
+  function changePage (offset) {
+    setPageNumber(prevPageNumber => prevPageNumber + offset);
   }
 
-  function x () {
-
+  function previousPage() {
+    changePage(-1);
   }
 
-  function x () {
-
+  function nextPage() {
+    changePage(1);
   }
 
-  const
+  const { pdf } = props; //where does it pass from?
 
   return (
-    <h1>Test</h1>
+    <>
+      <Document
+      file={pdf}
+      options={{  workerSrc: 'pdf.worker.js'  }}
+      onLoadSuccess={onDocumentLoadSuccess}
+      >
+        <Page pageNumber={pageNumber} />
+      </Document>
+      <div>
+        <p>
+
+        </p>
+
+        <button>
+        </button>
+
+        <button>
+        </button>
+      </div>
   )
 };
