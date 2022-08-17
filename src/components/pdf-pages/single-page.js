@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
-import {Document, Page } from 'react-pdf';
+import { Document, Page } from 'react-pdf/dist/esm/entry.webpack';
 
-export default function SinglePage() {
+export default function SinglePage(props) {
   const [numPages, setNumPages] = useState(null);
   const [pageNumber, setPageNumber] = useState(1);
 
@@ -28,21 +28,23 @@ export default function SinglePage() {
     <>
       <Document
       file={pdf}
-      options={{  workerSrc: 'pdf.worker.js'  }}
+      options={{  workerSrc: '/pdf.worker.js'  }}
       onLoadSuccess={onDocumentLoadSuccess}
       >
         <Page pageNumber={pageNumber} />
       </Document>
       <div>
         <p>
-
+        Page {pageNumber || (numPages ? 1 : '--')} of {numPages || '--'}
         </p>
-
-        <button>
+        <button type='button' disabled={pageNumber <= 1} onClick={previousPage}>
+          Previous
         </button>
-
-        <button>
+        <button type='button' disabled={pageNumber >= numPages}
+        onClick={nextPage}>
+          Next
         </button>
       </div>
+    </>
   )
 };
